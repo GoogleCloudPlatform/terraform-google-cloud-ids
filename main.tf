@@ -73,6 +73,11 @@ resource "google_compute_packet_mirroring" "cloud_ids_packet_mirroring" {
       }
     }
   }
+  filter {
+    ip_protocols = var.ip_protocols_filter
+    cidr_ranges  = var.cidr_ranges_filter
+    direction    = var.direction_filter
+  }
   depends_on = [
     google_cloud_ids_endpoint.ids_endpoint,
   ]
