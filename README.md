@@ -1,5 +1,5 @@
 # Cloud IDS Terraform Module
-This module makes it easy to setup [Cloud IDS](https://cloud.google.com/ids), set up [private services access](https://cloud.google.com/vpc/docs/private-services-access) and a [packet mirroring policy](https://cloud.google.com/vpc/docs/using-packet-mirroring). 
+This module makes it easy to setup [Cloud IDS](https://cloud.google.com/ids), set up [private services access](https://cloud.google.com/vpc/docs/private-services-access) and a [packet mirroring policy](https://cloud.google.com/vpc/docs/using-packet-mirroring).
 
 The packet mirroring policy requires at least one of the three below options:
 - [Tags](#pre_configured_rules): Up to 5 asset tags can be specified.
@@ -19,7 +19,7 @@ module cloud_ids {
   instance_list = [
     "projects/<PROJECT_ID>/zones/<ZONE-1>/instances/<INSTANCE-1>",
     "projects/<PROJECT_ID>/zones/<ZONE-2>/instances/<INSTANCE-2>",
-  ] 
+  ]
   subnet_list = [
     "projects/<PROJECT_ID>/regions/<ZONE-1>/subnetworks/<SUBNETWORK-1>",
     "projects/<PROJECT_ID>/regions/<ZONE-1>/subnetworks/<SUBNETWORK-1>",

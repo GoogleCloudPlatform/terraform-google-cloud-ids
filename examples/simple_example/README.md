@@ -18,7 +18,7 @@ Main resources:
 
 
 ## How to deploy?
-The following steps should be executed in Cloud Shell in the Google Cloud Console. 
+The following steps should be executed in Cloud Shell in the Google Cloud Console.
 
 ### 1. Create a project and enable billing
 Follow the steps in [this guide](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
@@ -26,7 +26,7 @@ Follow the steps in [this guide](https://cloud.google.com/resource-manager/docs/
 
 ### 2. Deploy the infrastructure using Terraform
 
-This terraform deployment requires the following variables. 
+This terraform deployment requires the following variables.
 
 - demo_project_id       = "YOUR_PROJECT_ID"
 - vpc_network_name      = "cloud-ids-vpc"

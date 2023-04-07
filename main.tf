@@ -1,24 +1,16 @@
 ##  Copyright 2023 Google LLC
-##  
+##
 ##  Licensed under the Apache License, Version 2.0 (the "License");
 ##  you may not use this file except in compliance with the License.
 ##  You may obtain a copy of the License at
-##  
+##
 ##      https://www.apache.org/licenses/LICENSE-2.0
-##  
+##
 ##  Unless required by applicable law or agreed to in writing, software
 ##  distributed under the License is distributed on an "AS IS" BASIS,
 ##  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
-
-/*
-# Wait delay after enabling APIs ###
-resource "time_sleep" "wait_in_module" {
-  create_duration  = "60s"
-  destroy_duration = "60s"
-}
-*/
 
 # Setup Private IP access ###
 resource "google_compute_global_address" "ids_private_ip" {
@@ -29,10 +21,8 @@ resource "google_compute_global_address" "ids_private_ip" {
   prefix_length = var.ids_private_ip_prefix_length
   network       = "projects/${var.project_id}/global/networks/${var.vpc_network_name}"
   project       = var.project_id
-  description   = var.packet_mirroring_policy_description
-  #  depends_on    = [time_sleep.wait_in_module]
+  description   = var.ids_private_ip_description
 }
-
 
 # Create Private Connection: ####
 resource "google_service_networking_connection" "private_vpc_connection" {
@@ -41,9 +31,6 @@ resource "google_service_networking_connection" "private_vpc_connection" {
   reserved_peering_ranges = [google_compute_global_address.ids_private_ip.name]
   depends_on              = [google_compute_global_address.ids_private_ip]
 }
-
-
-
 
 # Creating the IDS Endpoint ####
 resource "google_cloud_ids_endpoint" "ids_endpoint" {
@@ -56,8 +43,6 @@ resource "google_cloud_ids_endpoint" "ids_endpoint" {
     google_service_networking_connection.private_vpc_connection,
   ]
 }
-
-
 
 #Creating the packet mirroring policy for the subnet ####
 resource "google_compute_packet_mirroring" "cloud_ids_packet_mirroring" {

@@ -21,7 +21,6 @@
 variable "project_id" {
   type        = string
   description = "Project ID to deploy resources"
-  default     = "test2-testuser"
 }
 
 
@@ -43,35 +42,4 @@ variable "network_zone" {
   description = "Network zone for IDS"
   default     = "us-east1-b"
 
-}
-
-variable "instance_list" {
-  type        = list(string)
-  description = "Instance list to monitor with Cloud IDS"
-  default = [
-    "projects/test2-testuser/zones/us-east1-b/instances/ids-attacker-machine",
-    "projects/test2-testuser/zones/us-east1-b/instances/ids-victim-server",
-  ]
-
-}
-
-variable "subnet_list" {
-  type        = list(string)
-  description = "Subnet list to monitor with Cloud IDS"
-  default     = ["projects/test2-testuser/regions/us-east1/subnetworks/ids-network-us-east1"]
-  #[
-  #    "projects/test2-testuser/zones/us-east1-b/instances/ids-attacker-machine",
-  # "projects/test2-testuser/zones/us-east1-b/instances/ids-victim-server",
-  # ]
-}
-
-
-variable "tag_list" {
-  type        = list(string)
-  description = "Tag list to monitor with Cloud IDS"
-  default     = ["prod", "test", "qa", "public"]
-  #[
-  #    "projects/test2-testuser/zones/us-east1-b/instances/ids-attacker-machine",
-  # "projects/test2-testuser/zones/us-east1-b/instances/ids-victim-server",
-  # ]
 }
