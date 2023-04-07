@@ -15,40 +15,13 @@
 ##  This code creates PoC example for Cloud IDS ##
 ##  It is not developed for production workload ##
 
-# Enable the necessary API services
-resource "google_project_service" "ids_api_service" {
-  for_each = toset([
-    "servicenetworking.googleapis.com",
-    "ids.googleapis.com",
-    "logging.googleapis.com",
-    "compute.googleapis.com",
-  ])
-  service                    = each.key
-  project                    = var.project_id
-  disable_on_destroy         = false
-  disable_dependent_services = true
-}
-
-# wait delay after enabling APIs
-resource "time_sleep" "wait_enable_service_api_ids" {
-  depends_on       = [google_project_service.ids_api_service]
-  create_duration  = "60s"
-  destroy_duration = "60s"
-}
-
-#Get the default the service Account
-data "google_compute_default_service_account" "default" {
-  project    = var.project_id
-  depends_on = [time_sleep.wait_enable_service_api_ids]
-}
-
 # Create the IDS network
 resource "google_compute_network" "ids_network" {
   project                 = var.project_id
   name                    = var.vpc_network_name
   auto_create_subnetworks = false
   description             = "IDS network for the Cloud IDS instance and compute instance"
-  depends_on              = [time_sleep.wait_enable_service_api_ids]
+  # depends_on              = [time_sleep.wait_enable_service_api_ids]
 }
 
 # Create IDS Subnetwork
@@ -79,7 +52,7 @@ resource "google_compute_firewall" "ids_allow_http_icmp" {
   }
   source_ranges = ["192.168.10.0/24"]
   target_service_accounts = [
-    data.google_compute_default_service_account.default.email
+    google_service_account.compute_service_account.email
   ]
   allow {
     protocol = "icmp"
@@ -89,7 +62,7 @@ resource "google_compute_firewall" "ids_allow_http_icmp" {
 resource "google_service_account" "compute_service_account" {
   project      = var.project_id
   account_id   = "compute-service-account"
-  display_name = "Service Account"
+  display_name = "Custom Compute Service Account"
 }
 
 # Create Server Instance
@@ -114,7 +87,7 @@ resource "google_compute_instance" "ids_victim_server" {
   }
 
   service_account {
-    email  = data.google_compute_default_service_account.default.email
+    email  = google_service_account.compute_service_account.email
     scopes = ["cloud-platform"]
   }
   metadata_startup_script = "apt-get update -y;apt-get install -y nginx;"
@@ -122,7 +95,7 @@ resource "google_compute_instance" "ids_victim_server" {
     asset_type = "victim-machine"
   }
   depends_on = [
-    time_sleep.wait_enable_service_api_ids,
+    # time_sleep.wait_enable_service_api_ids,
     google_compute_router_nat.ids_nats,
   ]
 }
@@ -150,7 +123,7 @@ resource "google_compute_instance" "ids_attacker_machine" {
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = data.google_compute_default_service_account.default.email
+    email  = google_service_account.compute_service_account.email
     scopes = ["cloud-platform"]
   }
 
@@ -163,7 +136,7 @@ resource "google_compute_instance" "ids_attacker_machine" {
     asset_type = "attacker-machine"
   }
   depends_on = [
-    time_sleep.wait_enable_service_api_ids,
+    # time_sleep.wait_enable_service_api_ids,
     google_compute_router_nat.ids_nats,
     google_compute_instance.ids_victim_server,
   ]
@@ -198,7 +171,7 @@ resource "google_compute_router_nat" "ids_nats" {
 module "cloud_ids" {
   source                              = "../../"
   project_id                          = var.project_id
-  vpc_network_name                    = var.vpc_network_name
+  vpc_network_name                    = google_compute_network.ids_network.name
   network_region                      = var.network_region
   network_zone                        = var.network_zone
   ids_private_ip_range_name           = "ids-private-address"
