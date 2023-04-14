@@ -1,11 +1,11 @@
 ##  Copyright 2023 Google LLC
-##  
+##
 ##  Licensed under the Apache License, Version 2.0 (the "License");
 ##  you may not use this file except in compliance with the License.
 ##  You may obtain a copy of the License at
-##  
+##
 ##      https://www.apache.org/licenses/LICENSE-2.0
-##  
+##
 ##  Unless required by applicable law or agreed to in writing, software
 ##  distributed under the License is distributed on an "AS IS" BASIS,
 ##  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -99,4 +99,22 @@ variable "packet_mirroring_policy_description" {
   type        = string
   description = "Packet mirroring policy description"
   default     = "Packet mirroring policy for Cloud IDS"
+}
+
+variable "ip_protocols_filter" {
+  type        = list(string)
+  description = "IP Protocols filter for packet mirroing policy. Can include 'tcp', 'udp', 'icmp', and 'esp'"
+  default     = []
+}
+
+variable "cidr_ranges_filter" {
+  type        = list(string)
+  description = "IP CIDR ranges that apply as a filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported."
+  default     = []
+}
+
+variable "direction_filter" {
+  type        = string
+  description = "Direction of traffic to mirror. Possible values are INGRESS, EGRESS, and BOTH."
+  default     = "BOTH"
 }

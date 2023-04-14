@@ -1,32 +1,14 @@
-
-
 # Cloud IDS Terraform Module
-This module makes it easy to setup [Cloud IDS](https://cloud.google.com/ids), set up private services access and a packet mirroring policy. The packet mirroring policy requires at least one of the three below options:
+This module makes it easy to setup [Cloud IDS](https://cloud.google.com/ids), set up [private services access](https://cloud.google.com/vpc/docs/private-services-access) and a [packet mirroring policy](https://cloud.google.com/vpc/docs/using-packet-mirroring).
+
+The packet mirroring policy requires at least one of the three below options:
 - [Tags](#pre_configured_rules): Up to 5 asset tags can be specified.
 - [Subnets](#security_rules): Up to 5 subnets can be specified.
 - [Instances](#custom_rules): Up to 50 instance can be specified.
 
-
-## Compatibility
-
-This module is meant for use with Terraform 1.3+ and tested using Terraform 1.3+. If you find incompatibilities using Terraform >=1.3, please open an issue.
-
-
-##  Assumptions and Prerequisites
-This module assumes that below mentioned prerequisites are in place before consuming the module.
-
-- All required APIs are enabled in the GCP Project
-    - servicenetworking.googleapis.com
-    - ids.googleapis.com
-    - logging.googleapis.com
-    - compute.googleapis.com
-- Permissions are available
-
-
-
 ##  Usage
 
-```
+```tf
 module cloud_ids {
   source = "GoogleCloudPlatform/terraform-google-cloud-ids"
 
@@ -34,9 +16,15 @@ module cloud_ids {
   vpc_network_name                    = "<VPC_NETWORK_NAME>"
   network_region                      = "<NETWORK_REGION>"
   network_zone                        = "<NETWORK_ZONE>"
-  instance_list                       = "<INSTANCE_ID_LIST>" 
-  subnet_list                         = "<SUBNET_ID_LIST>"
-  tag_list                            = "<TAG_LIST>"
+  instance_list = [
+    "projects/<PROJECT_ID>/zones/<ZONE-1>/instances/<INSTANCE-1>",
+    "projects/<PROJECT_ID>/zones/<ZONE-2>/instances/<INSTANCE-2>",
+  ]
+  subnet_list = [
+    "projects/<PROJECT_ID>/regions/<ZONE-1>/subnetworks/<SUBNETWORK-1>",
+    "projects/<PROJECT_ID>/regions/<ZONE-1>/subnetworks/<SUBNETWORK-1>",
+  ]
+  tag_list = ["<TAG-1>", "<TAG-2>", "<TAG-3>", "<TAG-4>"]
   ids_private_ip_range_name           = "ids-private-address"
   ids_private_ip_address              = "10.10.10.0"
   ids_private_ip_prefix_length        = 24
@@ -47,24 +35,6 @@ module cloud_ids {
   packet_mirroring_policy_description = "Packet mirroring policy for Cloud IDS"
 }
 ```
-
-
-Format for instance_list (includes instance_id), subnet_list (includes subnet_id) and tag_list variables is defined here.
-
-```
-instance_list                       = [
-    "projects/<PROJECT_ID>/zones/<ZONE-1>/instances/<INSTANCE-1>",
-    "projects/<PROJECT_ID>/zones/<ZONE-2>/instances/<INSTANCE-2>",
-  ] 
-
-subnet_list                       = [
-    "projects/<PROJECT_ID>/regions/<ZONE-1>/subnetworks/<SUBNETWORK-1>",
-    "projects/<PROJECT_ID>/regions/<ZONE-1>/subnetworks/<SUBNETWORK-1>",
-    ]
-
-tag_list = ["<TAG-1>", "<TAG-2>", "<TAG-3>", "<TAG-4>"]
-```
-
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
@@ -96,7 +66,42 @@ tag_list = ["<TAG-1>", "<TAG-2>", "<TAG-3>", "<TAG-4>"]
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
+## Requirements
 
+These sections describe requirements for using this module.
+
+### Software
+
+The following dependencies must be available:
+
+- [Terraform][terraform] v1.3
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.53
+
+### Service Account
+
+A service account with the following roles must be used to provision
+the resources of this module:
+
+- Cloud IDS Admin: `roles/ids.admin`
+- Compute Packet Mirroring User: `roles/compute.packetMirroringUser`
+- Logs Viewer: `roles/logging.viewer`
+
+The [Project Factory module][project-factory-module] and the
+[IAM module][iam-module] may be used in combination to provision a
+service account with the necessary roles applied.
+
+### APIs
+
+A project with the following APIs enabled must be used to host the
+resources of this module:
+
+- Cloud IDS API: `ids.googleapis.com`
+- Cloud Logging API: `logging.googleapis.com`
+- Compute Engine API: `compute.googleapis.com`
+- Service Networking API: `servicenetworking.googleapis.com`
+
+The [Project Factory module][project-factory-module] can be used to
+provision a project with the necessary APIs enabled.
 
 ## Contributing
 
