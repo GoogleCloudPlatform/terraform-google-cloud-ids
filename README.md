@@ -44,7 +44,7 @@ module cloud_ids {
 | cidr\_ranges\_filter | IP CIDR ranges that apply as a filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. | `list(string)` | `[]` | no |
 | direction\_filter | Direction of traffic to mirror. Possible values are INGRESS, EGRESS, and BOTH. | `string` | `"BOTH"` | no |
 | ids\_name | Cloud IDS instance name | `string` | `"cloud-ids"` | no |
-| ids\_private\_ip\_address | Cloud IDS private IP address | `string` | `"10.10.10.0"` | no |
+| ids\_private\_ip\_address | Cloud IDS private IP address | `string` | `null` | no |
 | ids\_private\_ip\_description | Cloud IDS private IP address description | `string` | `"Cloud IDS reserved IP Range"` | no |
 | ids\_private\_ip\_prefix\_length | Cloud IDS private IP address prefix length | `string` | `24` | no |
 | ids\_private\_ip\_range\_name | Cloud IDS private IP address range name | `string` | `"ids-private-address"` | no |
