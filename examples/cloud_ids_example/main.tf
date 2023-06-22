@@ -175,7 +175,7 @@ module "cloud_ids" {
   network_region                      = var.network_region
   network_zone                        = var.network_zone
   ids_private_ip_range_name           = "ids-private-address"
-  ids_private_ip_address              = "10.10.10.0"
+  ids_private_ip_address              = null
   ids_private_ip_prefix_length        = 24
   ids_private_ip_description          = "Cloud IDS reserved IP Range"
   ids_name                            = "cloud-ids"
