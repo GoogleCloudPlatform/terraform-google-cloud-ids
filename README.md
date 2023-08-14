@@ -58,6 +58,7 @@ module cloud_ids {
 | severity | The minimum alert severity level that is reported by the endpoint | `string` | `"INFORMATIONAL"` | no |
 | subnet\_list | Subnet list to monitor with Cloud IDS | `list(string)` | `null` | no |
 | tag\_list | Tag list to monitor with Cloud IDS | `list(string)` | `null` | no |
+| threat\_exceptions | Threat IDs excluded from generating alerts. Limit: 99 IDs. | `list(string)` | `[]` | no |
 | vpc\_network\_name | VPC network name for IDS | `string` | n/a | yes |
 
 ## Outputs

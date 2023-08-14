@@ -89,6 +89,12 @@ variable "severity" {
   default     = "INFORMATIONAL"
 }
 
+variable "threat_exceptions" {
+  type        = list(string)
+  description = "Threat IDs excluded from generating alerts. Limit: 99 IDs."
+  default     = []
+}
+
 variable "packet_mirroring_policy_name" {
   type        = string
   description = "Packet mirroring policy name"
