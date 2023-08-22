@@ -21,7 +21,7 @@
 variable "project_id" {
   type        = string
   description = "Project ID to deploy resources"
-}
+  }
 
 
 variable "vpc_network_name" {
@@ -41,5 +41,4 @@ variable "network_zone" {
   type        = string
   description = "Network zone for IDS"
   default     = "us-east1-b"
-
 }

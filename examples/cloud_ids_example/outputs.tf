@@ -34,6 +34,5 @@ output "ids_malicious_attacker_server" {
 
 output "ids_victim_server_ip" {
   value = "IDS victim server ip - ${google_compute_instance.ids_victim_server.network_interface[0].network_ip}"
-
 }
 

@@ -55,3 +55,24 @@ From the root folder of this repo, run the following command:
 ```
 terraform destroy
 ```
+
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| network\_region | Network region for IDS | `string` | `"us-east1"` | no |
+| network\_zone | Network zone for IDS | `string` | `"us-east1-b"` | no |
+| project\_id | Project ID to deploy resources | `string` | `"test2-testuser"` | no |
+| vpc\_network\_name | VPC network name for IDS | `string` | `"cloud-ids-vpc"` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| ids\_endpoint\_id | IDS Endpoint id |
+| ids\_endpoint\_severity | IDS Endpoint severity |
+| ids\_malicious\_attacker\_server | n/a |
+| ids\_victim\_server\_ip | n/a |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
