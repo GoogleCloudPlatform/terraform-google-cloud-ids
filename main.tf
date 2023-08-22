@@ -34,12 +34,12 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 
 # Creating the IDS Endpoint ####
 resource "google_cloud_ids_endpoint" "ids_endpoint" {
-  name     = var.ids_name
-  location = var.network_zone
-  network  = "projects/${var.project_id}/global/networks/${var.vpc_network_name}"
-  severity = var.severity
-  project  = var.project_id
-  threat_exceptions = var.threat_exceptions   
+  name              = var.ids_name
+  location          = var.network_zone
+  network           = "projects/${var.project_id}/global/networks/${var.vpc_network_name}"
+  severity          = var.severity
+  project           = var.project_id
+  threat_exceptions = var.threat_exceptions
   depends_on = [
     google_service_networking_connection.private_vpc_connection,
   ]

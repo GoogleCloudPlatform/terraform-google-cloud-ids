@@ -21,7 +21,7 @@
 variable "project_id" {
   type        = string
   description = "Project ID to deploy resources"
-  }
+}
 
 
 variable "vpc_network_name" {
