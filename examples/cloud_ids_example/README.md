@@ -63,7 +63,7 @@ terraform destroy
 |------|-------------|------|---------|:--------:|
 | network\_region | Network region for IDS | `string` | `"us-east1"` | no |
 | network\_zone | Network zone for IDS | `string` | `"us-east1-b"` | no |
-| project\_id | Project ID to deploy resources | `string` | `"test2-testuser"` | no |
+| project\_id | Project ID to deploy resources | `string` | n/a | yes |
 | vpc\_network\_name | VPC network name for IDS | `string` | `"cloud-ids-vpc"` | no |
 
 ## Outputs
