@@ -53,6 +53,12 @@ variable "tag_list" {
   default     = null
 }
 
+variable "threat_exceptions" {
+  type        = list(string)
+  description = "Threat_exceptions list to excluded from generating alerts. Limit: 99 IDs."
+  default     = null
+}
+
 variable "ids_private_ip_range_name" {
   type        = string
   description = "Cloud IDS private IP address range name"
@@ -62,7 +68,7 @@ variable "ids_private_ip_range_name" {
 variable "ids_private_ip_address" {
   type        = string
   description = "Cloud IDS private IP address"
-  default     = "10.10.10.0"
+  default     = null
 }
 
 variable "ids_private_ip_prefix_length" {

@@ -41,32 +41,16 @@ module cloud_ids {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| cidr\_ranges\_filter | IP CIDR ranges that apply as a filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. | `list(string)` | `[]` | no |
-| direction\_filter | Direction of traffic to mirror. Possible values are INGRESS, EGRESS, and BOTH. | `string` | `"BOTH"` | no |
-| ids\_name | Cloud IDS instance name | `string` | `"cloud-ids"` | no |
-| ids\_private\_ip\_address | Cloud IDS private IP address | `string` | `null` | no |
-| ids\_private\_ip\_description | Cloud IDS private IP address description | `string` | `"Cloud IDS reserved IP Range"` | no |
-| ids\_private\_ip\_prefix\_length | Cloud IDS private IP address prefix length | `string` | `24` | no |
-| ids\_private\_ip\_range\_name | Cloud IDS private IP address range name | `string` | `"ids-private-address"` | no |
-| instance\_list | Instance list to monitor with Cloud IDS | `list(string)` | `null` | no |
-| ip\_protocols\_filter | IP Protocols filter for packet mirroing policy. Can include 'tcp', 'udp', 'icmp', and 'esp' | `list(string)` | `[]` | no |
-| network\_region | Network region for IDS | `string` | n/a | yes |
-| network\_zone | Network zone for IDS | `string` | n/a | yes |
-| packet\_mirroring\_policy\_description | Packet mirroring policy description | `string` | `"Packet mirroring policy for Cloud IDS"` | no |
-| packet\_mirroring\_policy\_name | Packet mirroring policy name | `string` | `"cloud-ids-packet-mirroring"` | no |
-| project\_id | Project ID to deploy resources | `string` | n/a | yes |
-| severity | The minimum alert severity level that is reported by the endpoint | `string` | `"INFORMATIONAL"` | no |
-| subnet\_list | Subnet list to monitor with Cloud IDS | `list(string)` | `null` | no |
-| tag\_list | Tag list to monitor with Cloud IDS | `list(string)` | `null` | no |
-| threat\_exceptions | Threat\_exceptions list to excluded from generating alerts. Limit: 99 IDs. | `list(string)` | `null` | no |
-| vpc\_network\_name | VPC network name for IDS | `string` | n/a | yes |
+| billing\_account | The billing account id associated with the project, e.g. XXXXXX-YYYYYY-ZZZZZZ | `any` | n/a | yes |
+| folder\_id | The folder to deploy in | `any` | n/a | yes |
+| org\_id | The numeric organization id | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| ids\_endpoint\_id | IDS Endpoint id |
-| ids\_endpoint\_severity | IDS Endpoint severity |
+| project\_id | n/a |
+| sa\_key | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

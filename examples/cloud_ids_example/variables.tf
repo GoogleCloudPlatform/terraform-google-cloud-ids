@@ -41,5 +41,4 @@ variable "network_zone" {
   type        = string
   description = "Network zone for IDS"
   default     = "us-east1-b"
-
 }

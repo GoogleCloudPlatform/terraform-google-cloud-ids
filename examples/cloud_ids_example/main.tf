@@ -175,7 +175,7 @@ module "cloud_ids" {
   network_region                      = var.network_region
   network_zone                        = var.network_zone
   ids_private_ip_range_name           = "ids-private-address"
-  ids_private_ip_address              = "10.10.10.0"
+  ids_private_ip_address              = null
   ids_private_ip_prefix_length        = 24
   ids_private_ip_description          = "Cloud IDS reserved IP Range"
   ids_name                            = "cloud-ids"
@@ -185,4 +185,5 @@ module "cloud_ids" {
   instance_list                       = [google_compute_instance.ids_victim_server.id, google_compute_instance.ids_attacker_machine.id]
   subnet_list                         = [google_compute_subnetwork.ids_subnetwork.id]
   tag_list                            = ["prod", "test", "qa", "public"]
+  threat_exceptions                   = ["99999", "00000"]
 }
