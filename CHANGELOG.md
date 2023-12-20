@@ -8,6 +8,18 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.2.0](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/compare/v0.1.0...v0.2.0) (2023-12-20)
+
+
+### Features
+
+* added threat exception attribute and updated README ([#15](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/issues/15)) ([feaddda](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/commit/feaddda839e54dbd511476b2a82221819bd55f06))
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform google to v5 ([#21](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/issues/21)) ([c7e2ac1](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/commit/c7e2ac10b229382b842edcf7ed4db260ecc65b98))
+
 ## 0.1.0 (2023-05-03)
 
 
