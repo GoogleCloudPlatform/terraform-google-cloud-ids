@@ -22,6 +22,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/cloud-ids/v0.1.0"
+    module_name = "blueprints/terraform/cloud-ids/v0.2.0"
   }
 }
