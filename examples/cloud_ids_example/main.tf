@@ -169,7 +169,9 @@ resource "google_compute_router_nat" "ids_nats" {
 
 # Configure Cloud IDS
 module "cloud_ids" {
-  source                              = "../../"
+  source                              = "GoogleCloudPlatform/cloud-ids/google"
+  version                             = "~> 0.1"
+
   project_id                          = var.project_id
   vpc_network_name                    = google_compute_network.ids_network.name
   network_region                      = var.network_region
