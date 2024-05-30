@@ -14,6 +14,8 @@
 
 # Setup Private IP access ###
 resource "google_compute_global_address" "ids_private_ip" {
+  count = var.create_service_networking_connection ? 1 : 0
+
   name          = var.ids_private_ip_range_name
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"
@@ -26,9 +28,11 @@ resource "google_compute_global_address" "ids_private_ip" {
 
 # Create Private Connection: ####
 resource "google_service_networking_connection" "private_vpc_connection" {
+  count = var.create_service_networking_connection ? 1 : 0
+
   network                 = "projects/${var.project_id}/global/networks/${var.vpc_network_name}"
   service                 = "servicenetworking.googleapis.com"
-  reserved_peering_ranges = [google_compute_global_address.ids_private_ip.name]
+  reserved_peering_ranges = [google_compute_global_address.ids_private_ip[0].name]
   depends_on              = [google_compute_global_address.ids_private_ip]
 }
 
