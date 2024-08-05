@@ -124,3 +124,9 @@ variable "direction_filter" {
   description = "Direction of traffic to mirror. Possible values are INGRESS, EGRESS, and BOTH."
   default     = "BOTH"
 }
+
+variable "create_service_networking_connection" {
+  type        = bool
+  description = "Whether to create service networking connection and IP range."
+  default     = true
+}
