@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.3.0](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/compare/v0.2.0...v0.3.0) (2024-08-05)
+
+
+### Features
+
+* Make Service Network Connection optional ([#40](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/issues/40)) ([46060b8](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/commit/46060b8910b628f13c0b9bfa4575531288199657))
+
 ## [0.2.0](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/compare/v0.1.0...v0.2.0) (2023-12-20)
 
 
