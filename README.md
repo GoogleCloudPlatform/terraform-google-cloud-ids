@@ -10,7 +10,7 @@ The packet mirroring policy requires at least one of the three below options:
 
 ```tf
 module cloud_ids {
-  source = "GoogleCloudPlatform/terraform-google-cloud-ids"
+  source  = "GoogleCloudPlatform/cloud-ids/google"
 
   project_id                          = "<PROJECT_ID>"
   vpc_network_name                    = "<VPC_NETWORK_NAME>"
