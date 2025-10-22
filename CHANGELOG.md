@@ -8,6 +8,22 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.4.0](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/compare/v0.3.0...v0.4.0) (2025-10-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TF>=1.3:** Update go modules and dev-tools ([#53](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/issues/53))
+
+### Features
+
+* **deps:** Update Terraform google to v7 ([#64](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/issues/64)) ([1b2f773](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/commit/1b2f7738590ae88bf5e71c641b6da97dd1861b85))
+
+
+### Bug Fixes
+
+* **TF>=1.3:** Update go modules and dev-tools ([#53](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/issues/53)) ([3d4b37b](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/commit/3d4b37bebf2e62e0053b3c39a7b389e3e23a9833))
+
 ## [0.3.0](https://github.com/GoogleCloudPlatform/terraform-google-cloud-ids/compare/v0.2.0...v0.3.0) (2024-10-30)
 
 
